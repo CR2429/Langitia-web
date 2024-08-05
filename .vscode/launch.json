@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LangitiaApplication<langitia>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.annoapp.langitia.LangitiaApplication",
+            "projectName": "langitia",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
