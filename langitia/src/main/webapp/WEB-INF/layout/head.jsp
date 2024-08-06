@@ -9,7 +9,7 @@
 
     <!--deco et interaction-->
     
-    <link rel="stylesheet" href="/annoapp/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <style>
     @font-face {
@@ -19,8 +19,8 @@
     </style>
 
     <!--https://codepen.io/wefiy/pen/WPpEwo-->
-    <link rel="stylesheet" href="/annoapp/css/matrix.css">
-    <script src="/annoapp/js/matrix.js" async></script>
+    <link rel="stylesheet" href="css/matrix.css">
+    <script src="js/matrix.js" async></script>
 
-    <script src="/annoapp/js/api.js" async></script>
+    <script src="js/api.js" async></script>
 </head>
