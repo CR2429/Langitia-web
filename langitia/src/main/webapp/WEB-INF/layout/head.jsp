@@ -1,5 +1,5 @@
-<head>
-<meta charset="utf-8">
+
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mon site web</title>
 
@@ -14,7 +14,7 @@
     <style>
     @font-face {
         font-family: 'LangitienV1';
-        src: url('../Langitien-Regular.ttf') format('truetype');
+        src: url('Langitien-Regular.ttf') format('truetype');
     }
     </style>
 
@@ -23,4 +23,3 @@
     <script src="js/matrix.js" async></script>
 
     <script src="js/api.js" async></script>
-</head>

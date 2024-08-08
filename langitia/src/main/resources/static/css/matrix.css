@@ -1,0 +1,14 @@
+/* By Boujjou Achraf*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {background: black;}
+canvas {
+    display:block;
+    position: absolute;
+    z-index: 0;
+    top:0
+}

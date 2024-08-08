@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LangitiaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LangitiaApplication.class, args);
+        SpringApplication.run(LangitiaApplication.class, args);
 	}
 
 }
