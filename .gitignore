@@ -2,3 +2,5 @@
 /langitia/src/main/resources/application.properties
 langitia/src/main/resources/application.properties
 *.properties
+
+*.war
