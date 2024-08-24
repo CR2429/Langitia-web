@@ -32,8 +32,10 @@ public class LoginDbContext {
     public void setUserRepository(IUserRepository userRepository) {this.userRepository = userRepository;}
 
     //methode
-    /** Recupere la lioste de tout les users */
-    public List<User> selectAll() {return this.userRepository.findAll();}
+    /** Recupere la liste de tout les users */
+    public List<User> selectAll() {
+        return this.userRepository.findAll();
+    }
 
     /** Trouver un user specifique */
     public User selectUserById(String username) {
@@ -45,12 +47,12 @@ public class LoginDbContext {
     /** Recupere les roles d'un user specifique */
     @SuppressWarnings("deprecation")
     public List<GrantedAuthority> getAuthorities(String username) {
-        String sql = "select role from Roles where username = ?";
+        String sql = "SELECT role FROM Roles WHERE username = ?";
         List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>)jdbcTemplate.query(sql, new String[]{username}, new RoleMapper());
         return grantedAuthorities;
     }
 
-    /** Recupere le mode de passe d'un client */
+    /** Recupere le mode de passe d'un user */
     private String getPassword(String username) {
         return this.userRepository.findById(username).get().getPassword();
     }
@@ -60,7 +62,34 @@ public class LoginDbContext {
         this.userRepository.save(user);
     }
 
+    /** Modifier un user */
+    public void updateUser(User user) {
+        this.userRepository.save(user);
+    }
+
     /** Supprimer un user */
+    public void deleteUser(User user) {
+        String username = user.getUsername();
+
+        //suppression des roles du user
+        String sql = "DELETE FROM Roles WHERE username = ?";
+        this.jdbcTemplate.update(sql,username);
+
+        //suppression du user
+        this.userRepository.deleteById(username);
+    }
+
+    /** Observe la presence d'un user */
+    public boolean userExist(String username) {
+        boolean exist = this.userRepository.existsById(username);
+        return exist;
+    }
+
+    /** Changer juste le mot de passe */
+    public void changePassword(String username, String password) {
+        String sql = "UPDATE Users SET password = ? WHERE username = ?";
+        this.jdbcTemplate.update(sql,username,password);
+    }
 
     //private class
     private class RoleMapper implements RowMapper<GrantedAuthority> {
