@@ -23,6 +23,7 @@ public class MyUserManager implements UserDetailsManager {
     }
 
     //getter et setter
+    public PasswordEncoder getPasswordEncoder() {return passwordEncoder;}
 
     //methode
     /** Recuperer les UserDetails s'il existe */
