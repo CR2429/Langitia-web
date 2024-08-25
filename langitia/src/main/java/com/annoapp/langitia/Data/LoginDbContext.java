@@ -3,17 +3,13 @@ package com.annoapp.langitia.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.jdbc.core.RowMapper;
-
 import com.annoapp.langitia.Models.IUserRepository;
 import com.annoapp.langitia.Models.User;
-
 
 public class LoginDbContext {
     //propriete

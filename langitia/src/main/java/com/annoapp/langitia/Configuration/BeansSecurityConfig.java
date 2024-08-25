@@ -9,6 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
 
+import com.annoapp.langitia.Authentification.MyAuthenticationProvider;
+import com.annoapp.langitia.Authentification.MyUserManager;
+
 @Configuration
 @EnableWebSecurity
 public class BeansSecurityConfig {

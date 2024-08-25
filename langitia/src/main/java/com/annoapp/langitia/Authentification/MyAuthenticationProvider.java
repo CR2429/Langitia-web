@@ -1,17 +1,13 @@
 package com.annoapp.langitia.Authentification;
 
 import java.util.List;
-
 import org.springframework.security.core.AuthenticationException;
-
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import com.annoapp.langitia.Models.User;
-
 import org.springframework.security.core.Authentication;
 
 
