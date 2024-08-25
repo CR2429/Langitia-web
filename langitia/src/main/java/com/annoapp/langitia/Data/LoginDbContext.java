@@ -5,17 +5,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.authentication.jaas.AuthorityGranter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.annoapp.langitia.Models.IUserRepository;
 import com.annoapp.langitia.Models.User;
 
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class LoginDbContext {
     //propriete
@@ -38,14 +36,13 @@ public class LoginDbContext {
     }
 
     /** Trouver un user specifique */
-    public User selectUserById(String username) {
+    public User getUserById(String username) {
         User user = this.userRepository.findById(username).get();
         user.setRoles(this.getAuthorities(username));
         return user;
     }
 
     /** Recupere les roles d'un user specifique */
-    @SuppressWarnings("deprecation")
     public List<GrantedAuthority> getAuthorities(String username) {
         String sql = "SELECT role FROM Roles WHERE username = ?";
         List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>)jdbcTemplate.query(sql, new String[]{username}, new RoleMapper());
@@ -59,6 +56,7 @@ public class LoginDbContext {
 
     /** Ajout un user dans la base de donne */
     public void insertUser(User user) {
+        //ajouter un user
         this.userRepository.save(user);
     }
 
@@ -89,6 +87,28 @@ public class LoginDbContext {
     public void changePassword(String username, String password) {
         String sql = "UPDATE Users SET password = ? WHERE username = ?";
         this.jdbcTemplate.update(sql,username,password);
+    }
+
+    /** Recuperer les UserDetails s'il existe */
+    public UserDetails getUserDetails(String username) {
+        if (userExist(username)) {
+            return getUserById(username);
+        } else {
+            return null;
+        }
+    }
+
+    /** Creer un nouvel user */
+    public void createUser(User user) {
+        //ajouter le user dans la base de donne
+        this.userRepository.save(user);
+
+        //ajout des roles lier au user
+        List<GrantedAuthority> authorities = (List<GrantedAuthority>) user.getAuthorities();
+        for (GrantedAuthority authority : authorities) {
+            String sql = "INSERT INTO Roles VALUES(?,?)";
+            this.jdbcTemplate.update(sql, user.getUsername(), authority);
+        }
     }
 
     //private class
