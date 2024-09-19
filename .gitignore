@@ -4,3 +4,5 @@ langitia/src/main/resources/application.properties
 *.properties
 
 *.war
+
+langitia/src/main/java/com/annoapp/langitia/Configuration/BeansSecurityConfig.java

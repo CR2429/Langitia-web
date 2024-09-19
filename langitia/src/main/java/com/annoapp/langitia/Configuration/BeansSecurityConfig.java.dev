@@ -1,9 +1,15 @@
 package com.annoapp.langitia.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
@@ -11,6 +17,8 @@ import org.springframework.security.web.context.SecurityContextRepository;
 
 import com.annoapp.langitia.Authentification.MyAuthenticationProvider;
 import com.annoapp.langitia.Authentification.MyUserManager;
+import com.annoapp.langitia.Data.LoginDbContext;
+import com.annoapp.langitia.Models.User;
 
 @Configuration
 @EnableWebSecurity
@@ -31,6 +39,24 @@ public class BeansSecurityConfig {
     public MyAuthenticationProvider authenticationProvider(@Qualifier("myUserManager") MyUserManager uManager) {
         MyAuthenticationProvider myAuthenticationProvider = new MyAuthenticationProvider(uManager);
         return myAuthenticationProvider;
+    }
+
+    /**
+     * Faux user 
+    */
+    @Bean(name="myUsermanager")
+    public MyUserManager userManager(LoginDbContext dbContext, PasswordEncoder passwordEncoder) {
+        MyUserManager userManager = new MyUserManager(dbContext, passwordEncoder);
+
+        //creation de l'admin
+        if(!userManager.userExists("admin")) {
+            List<GrantedAuthority> authorityList = new ArrayList<>();
+            authorityList.add(new SimpleGrantedAuthority("Admin"));
+            User user = new User("admin", "admin_password", authorityList);
+            userManager.createUser(user);
+        }
+
+        return userManager;
     }
 
 

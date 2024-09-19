@@ -4,10 +4,8 @@
 <html lang="fr">
 
 <%@include file="./layout/head.jsp"%>
-
+<canvas id="c"></canvas>
 <body>
-    <canvas id="c"></canvas>
-
     <div class="container" id="main">
         <header class="my-3">
             <div class="row">
