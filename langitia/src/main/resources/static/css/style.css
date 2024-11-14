@@ -1,11 +1,24 @@
+/* OS */
+#OS {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1;
+    position: fixed;
+}
+
 /* Bureau */
 #desktop {
+    margin: 32px 32px 128px;
     position: absolute;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    top: 0;
-    left: 0;
+    display: flex;
+    
+
+    align-content: flex-start;
+    align-items: center;
+    gap: 32px;
+    flex-flow: column wrap;
 }
 
 #wallpaper {
@@ -15,4 +28,51 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: 0;
+}
+
+/* file */
+.file {
+    --icon-base: url("../image/file/file_txt2.png");
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 5px;
+    
+
+    display: inline-flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.fileIcon {
+    background: 50%/cover no-repeat var(--icon-base);
+    width: 96px;
+    height: 96px;
+}
+
+.file p {
+    color: white;
+    margin: 0;
+}
+
+/* hotbar */
+#hotbar {
+    background-color: white;
+    color: white;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1px;
+}
+
+.hotbar-app {
+    cursor: pointer;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    display: inline-block;
 }

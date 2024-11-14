@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-   
-    
-
     @GetMapping("/")
     public ModelAndView acceuil() {
         ModelAndView mv = new ModelAndView("index");
