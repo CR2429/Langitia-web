@@ -15,5 +15,6 @@ public class HomeController {
     public ModelAndView acceuil() {
         ModelAndView mv = new ModelAndView("index");
         return mv;
+        //return "index";
     }
 }

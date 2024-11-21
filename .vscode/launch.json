@@ -9,6 +9,16 @@
             "projectName": "langitia",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LangitiaApplication<Langitia>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.annoapp.langitia.LangitiaApplication",
+            "projectName": "Langitia",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
