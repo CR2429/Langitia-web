@@ -5,9 +5,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
-
-
 @Controller
 public class HomeController {
 
@@ -15,6 +12,5 @@ public class HomeController {
     public ModelAndView acceuil() {
         ModelAndView mv = new ModelAndView("index");
         return mv;
-        //return "index";
     }
 }
